@@ -1,0 +1,4517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maexus Zambia | Smart Loans & Financial Guidance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --------- Root Variables (Zambian Theme) --------- */
+        :root {
+            --primary: #198754; /* Zambian Green */
+            --primary-dark: #0d6e3f;
+            --primary-light: #20c997;
+            --secondary: #dc3545; /* Zambian Red */
+            --secondary-dark: #bb2d3b;
+            --accent: #fd7e14; /* Orange */
+            --accent-light: #ffc107; /* Yellow */
+            --success: #198754;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --info: #0dcaf0;
+            --dark: #1a1a2e;
+            --darker: #0f0f1f;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --gray-light: #adb5bd;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            --gradient-warning: linear-gradient(135deg, var(--warning), var(--accent));
+            --gradient-dark: linear-gradient(135deg, var(--darker), var(--dark));
+            --gradient-hero: linear-gradient(135deg, #1a1a2e 0%, #0f0f1f 50%, #198754 150%);
+        }
+
+        /* --------- Global Styles --------- */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
+        }
+        
+        body { 
+            background: linear-gradient(145deg, var(--darker) 0%, var(--dark) 50%, #2a2a4a 100%); 
+            color: var(--light); 
+            overflow-x: hidden; 
+            line-height: 1.6; 
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Zambian Pattern */
+        .zambian-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            opacity: 0.1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(25, 135, 84, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(220, 53, 69, 0.12) 0%, transparent 50%);
+        }
+
+        /* Money Flow Animation */
+        .money-flow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .coin {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: coinFlow 15s linear infinite;
+        }
+
+        .coin:nth-child(2n) {
+            background: var(--accent-light);
+            animation-delay: -3s;
+        }
+
+        .coin:nth-child(3n) {
+            background: var(--secondary);
+            animation-delay: -6s;
+        }
+
+        @keyframes coinFlow {
+            0% { transform: translateY(-100px) translateX(-50px) rotate(0deg); }
+            100% { transform: translateY(100vh) translateX(50px) rotate(360deg); }
+        }
+
+        /* Modern Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        a { text-decoration: none; color: inherit; }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        section { padding: 100px 0; }
+
+        /* --------- Buttons --------- */
+        .btn { 
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 32px; 
+            border-radius: 14px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            position: relative; 
+            overflow: hidden; 
+            transition: all 0.3s ease; 
+            text-decoration: none;
+            border: none;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+        
+        .btn:hover:before {
+            left: 100%;
+        }
+        
+        .btn-primary { 
+            background: var(--gradient-primary);
+            color: white; 
+            box-shadow: 0 8px 30px rgba(25, 135, 84, 0.3); 
+        }
+        
+        .btn-primary:hover { 
+            transform: translateY(-3px) scale(1.02); 
+            box-shadow: 0 12px 40px rgba(25, 135, 84, 0.4); 
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(25, 135, 84, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .btn-light {
+            background: white;
+            color: var(--dark);
+            box-shadow: 0 8px 30px rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-light:hover {
+            background: var(--light);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(255, 255, 255, 0.3);
+        }
+
+        /* --------- Landing Page --------- */
+        #landingPage {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Landing Header */
+        .landing-header {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(25px);
+            padding: 22px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--card-border);
+            transition: all 0.4s ease;
+        }
+
+        .landing-header.scrolled {
+            padding: 16px 0;
+            background: rgba(26, 26, 46, 0.98);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-content { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            gap: 40px;
+            width: 100%;
+        }
+        
+        .logo { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            font-size: 24px; 
+            font-weight: 800;
+            white-space: nowrap;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, var(--light) 0%, var(--primary) 50%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(25, 135, 84, 0.3);
+            flex-shrink: 0;
+        }
+
+        .landing-nav { 
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .landing-nav ul { 
+            display: flex; 
+            list-style: none; 
+            gap: 35px;
+            align-items: center;
+        }
+        
+        .landing-nav a { 
+            color: var(--gray-light); 
+            font-weight: 600; 
+            position: relative; 
+            padding: 8px 0; 
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            white-space: nowrap;
+        }
+        
+        .landing-nav a:after { 
+            content: ''; 
+            position: absolute; 
+            width: 0; 
+            height: 3px; 
+            bottom: 0; 
+            left: 0; 
+            background: var(--gradient-primary);
+            transition: width 0.3s ease; 
+            border-radius: 2px;
+        }
+        
+        .landing-nav a:hover:after { width: 100%; }
+        .landing-nav a:hover { color: var(--light); }
+        .landing-nav a.active { color: var(--primary); }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        
+        .header-actions .btn {
+            padding: 12px 24px;
+            font-size: 1rem;
+            border-radius: 12px;
+            white-space: nowrap;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 200px 0 100px;
+            background: var(--gradient-hero);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--light) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--gray-light);
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: var(--gray-light);
+            font-size: 0.9rem;
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .hero-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 30px;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: transform 0.5s ease;
+        }
+
+        .hero-card:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .card-balance {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(25, 135, 84, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+
+        /* Features Section */
+        .features {
+            background: var(--darker);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--light) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            color: var(--gray-light);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 60px rgba(25, 135, 84, 0.1);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(25, 135, 84, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+
+        .feature-description {
+            color: var(--gray-light);
+            line-height: 1.6;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: var(--dark);
+        }
+
+        .steps {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+            position: relative;
+        }
+
+        .steps:before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            z-index: 1;
+        }
+
+        .step {
+            background: var(--darker);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+            width: 250px;
+        }
+
+        .step:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin: 0 auto 20px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+
+        .step-description {
+            color: var(--gray-light);
+            font-size: 0.95rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--darker);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .testimonial-content {
+            color: var(--gray-light);
+            font-style: italic;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+        }
+
+        .author-info h4 {
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: var(--gradient-primary);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='100' cy='100' r='80'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--darker);
+            padding: 80px 0 40px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--light) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-description {
+            color: var(--gray-light);
+            line-height: 1.6;
+        }
+
+        .footer-links h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--gray-light);
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--card-border);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* --------- Authentication Screens --------- */
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .auth-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(25px);
+            border-radius: 24px;
+            padding: 50px;
+            width: 100%;
+            max-width: 480px;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .auth-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 40px;
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--light) 0%, var(--primary) 50%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .auth-logo-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--gradient-primary);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(25, 135, 84, 0.3);
+        }
+
+        .auth-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px;
+            border-radius: 16px;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 16px;
+            border: none;
+            background: transparent;
+            color: var(--gray-light);
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .auth-tab.active {
+            background: rgba(25, 135, 84, 0.2);
+            color: var(--primary);
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--light);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            color: var(--light);
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.1);
+        }
+
+        /* Balance Card Input Styling */
+        .balance-card input[type="number"] {
+            transition: all 0.3s ease;
+        }
+
+        .balance-card input[type="number"]:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15) !important;
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.2) !important;
+        }
+
+        .balance-card input[type="number"]::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            color: var(--light);
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .form-text {
+            color: var(--gray-light);
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 30px;
+            color: var(--gray-light);
+        }
+
+        .auth-link {
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* --------- Dashboard Styles --------- */
+        #dashboardPage {
+            display: none;
+        }
+
+        .dashboard-header { 
+            background: rgba(26, 26, 46, 0.95); 
+            backdrop-filter: blur(25px) saturate(180%); 
+            padding: 22px 0; 
+            position: fixed; 
+            width: 100%; 
+            z-index: 1000; 
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid var(--card-border);
+            transition: all 0.4s ease;
+            display: none;
+        }
+
+        .dashboard-header.scrolled {
+            padding: 16px 0;
+            background: rgba(26, 26, 46, 0.98);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* AI Assistant */
+        .ai-assistant {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1001;
+        }
+
+        .ai-toggle {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(25, 135, 84, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .ai-toggle:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 15px 40px rgba(25, 135, 84, 0.5);
+        }
+
+        .ai-chatbox {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 380px;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(25px);
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .ai-chatbox.active {
+            display: flex;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .ai-header {
+            padding: 20px;
+            background: rgba(25, 135, 84, 0.1);
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .ai-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .ai-title i {
+            color: var(--primary);
+        }
+
+        .ai-language {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            color: var(--gray-light);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: rgba(25, 135, 84, 0.2);
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .ai-messages {
+            flex: 1;
+            padding: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .ai-message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .ai-message.user {
+            align-self: flex-end;
+            background: var(--gradient-primary);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .ai-message.bot {
+            align-self: flex-start;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            border-bottom-left-radius: 4px;
+        }
+
+        .ai-input {
+            padding: 20px;
+            border-top: 1px solid var(--card-border);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .ai-input form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .ai-input input {
+            flex: 1;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            color: var(--light);
+            font-size: 0.95rem;
+        }
+
+        .ai-input button {
+            width: 46px;
+            height: 46px;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        /* Dashboard Layout */
+        .dashboard-layout {
+            padding: 180px 0 80px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            display: none;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 30px;
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(20px);
+            height: fit-content;
+            position: sticky;
+            top: 140px;
+        }
+
+        .user-profile {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin: 0 auto 20px;
+        }
+
+        .user-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .user-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(25, 135, 84, 0.1);
+            padding: 6px 16px;
+            border-radius: 20px;
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            color: var(--gray-light);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--light);
+        }
+
+        .nav-item.active {
+            background: rgba(25, 135, 84, 0.1);
+            color: var(--primary);
+            border-left: 4px solid var(--primary);
+        }
+
+        .nav-icon {
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* Balance Card */
+        .balance-card {
+            background: var(--gradient-primary);
+            border-radius: 24px;
+            padding: 40px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .balance-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='100' cy='100' r='80'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .balance-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .balance-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .balance-amount {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            line-height: 1;
+        }
+
+        .balance-stats {
+            display: flex;
+            gap: 40px;
+        }
+
+        .balance-stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        /* Usage Tracking */
+        .usage-section {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid var(--card-border);
+        }
+
+        .dashboard-section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        .period-selector {
+            display: flex;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px;
+            border-radius: 12px;
+        }
+
+        .period-btn {
+            padding: 8px 20px;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            color: var(--gray-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .period-btn.active {
+            background: rgba(25, 135, 84, 0.2);
+            color: var(--primary);
+        }
+
+        .usage-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        /* Spending Chart */
+        .spending-chart {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 30px;
+        }
+
+        .chart-placeholder {
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-light);
+        }
+
+        .chart-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        /* Categories */
+        .categories-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .category-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+        }
+
+        .category-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(5px);
+        }
+
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: rgba(25, 135, 84, 0.1);
+            color: var(--primary);
+        }
+
+        .category-info {
+            flex: 1;
+        }
+
+        .category-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .category-amount {
+            color: var(--gray-light);
+            font-size: 0.9rem;
+        }
+
+        .category-percentage {
+            font-weight: 700;
+            color: var(--light);
+        }
+
+        /* Loan Section */
+        .loan-section {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid var(--card-border);
+        }
+
+        .loan-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .loan-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loan-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(25, 135, 84, 0.1);
+        }
+
+        .loan-card.featured {
+            border: 2px solid var(--primary);
+        }
+
+        .loan-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--gradient-warning);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .loan-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(25, 135, 84, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .loan-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .loan-description {
+            color: var(--gray-light);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .loan-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+
+        .loan-detail {
+            text-align: center;
+        }
+
+        .detail-label {
+            font-size: 0.9rem;
+            color: var(--gray-light);
+            margin-bottom: 4px;
+        }
+
+        .detail-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--light);
+        }
+
+        /* Financial Advice */
+        .advice-section {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid var(--card-border);
+        }
+
+        .advice-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .advice-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+        }
+
+        .advice-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .advice-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(13, 202, 240, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--info);
+            margin-bottom: 20px;
+        }
+
+        .advice-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+
+        .advice-text {
+            color: var(--gray-light);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .advice-link {
+            color: var(--primary);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: gap 0.3s ease;
+        }
+
+        .advice-link:hover {
+            gap: 12px;
+        }
+
+        /* Transaction History */
+        .transactions-section {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid var(--card-border);
+        }
+
+        .transactions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .transaction-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+        }
+
+        .transaction-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(5px);
+        }
+
+        .transaction-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .transaction-icon.income {
+            background: rgba(25, 135, 84, 0.1);
+            color: var(--success);
+        }
+
+        .transaction-icon.expense {
+            background: rgba(220, 53, 69, 0.1);
+            color: var(--danger);
+        }
+
+        .transaction-info {
+            flex: 1;
+        }
+
+        .transaction-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .transaction-date {
+            color: var(--gray-light);
+            font-size: 0.9rem;
+        }
+
+        .transaction-amount {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .amount-positive {
+            color: var(--success);
+        }
+
+        .amount-negative {
+            color: var(--danger);
+        }
+
+        /* Savings Goals */
+        .savings-section {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid var(--card-border);
+        }
+
+        .savings-goals {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .goal-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+        }
+
+        .goal-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .goal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .goal-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(25, 135, 84, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .goal-progress {
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .goal-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: var(--gray-light);
+        }
+
+        .goal-target {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        /* Add Expense Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 40px;
+            width: 90%;
+            max-width: 500px;
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(25px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            color: var(--gray-light);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(220, 53, 69, 0.1);
+            color: var(--danger);
+            border-color: var(--danger);
+        }
+
+        .modal-body {
+            margin-bottom: 30px;
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+        }
+
+        /* Responsive Design */
+        /* Tablet - Large (1024px and below) */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+            
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            
+            .hero {
+                padding: 160px 0 80px;
+            }
+            
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+            
+            .hero-stats {
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+            
+            .steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .steps:before {
+                display: none;
+            }
+            
+            .step {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+            
+            .dashboard-layout {
+                grid-template-columns: 1fr;
+                padding: 140px 0 40px;
+                gap: 30px;
+            }
+            
+            .sidebar {
+                position: static;
+                margin-bottom: 0;
+                width: 100%;
+            }
+            
+            .usage-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+            
+            .balance-stats {
+                gap: 30px;
+            }
+        }
+
+        /* Tablet - Medium (768px and below) */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 18px;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .landing-header {
+                padding: 16px 0;
+            }
+            
+            .landing-header.scrolled {
+                padding: 12px 0;
+            }
+            
+            .header-content {
+                flex-direction: row;
+                gap: 15px;
+                justify-content: space-between;
+            }
+            
+            .logo {
+                font-size: 18px;
+                gap: 8px;
+            }
+            
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+                border-radius: 8px;
+            }
+            
+            .landing-nav { 
+                flex: 0;
+                display: none;
+            }
+            
+            .landing-nav ul {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+            
+            .landing-nav a {
+                font-size: 1rem;
+                padding: 8px 0;
+            }
+            
+            .header-actions {
+                width: auto;
+                flex-direction: row;
+                gap: 10px;
+            }
+            
+            .header-actions .btn {
+                padding: 11px 18px;
+                font-size: 0.9rem;
+                border-radius: 10px;
+            }
+            
+            .hero {
+                padding: 140px 0 60px;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.2rem;
+                line-height: 1.3;
+            }
+            
+            .hero-text p {
+                font-size: 1rem;
+                margin-bottom: 30px;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+                margin-top: 40px;
+            }
+            
+            .hero-stat {
+                text-align: left;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .stat-label {
+                font-size: 0.85rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 15px;
+            }
+            
+            .section-subtitle {
+                font-size: 1rem;
+                max-width: 100%;
+            }
+            
+            .section-header {
+                margin-bottom: 50px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .feature-card {
+                padding: 30px 20px;
+            }
+            
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .steps {
+                gap: 25px;
+            }
+            
+            .step {
+                width: 100%;
+                padding: 30px 20px;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .cta h2 {
+                font-size: 2rem;
+                line-height: 1.3;
+            }
+            
+            .cta p {
+                font-size: 1rem;
+                margin-bottom: 30px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+                gap: 15px;
+            }
+            
+            .footer {
+                padding: 60px 0 30px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .auth-card {
+                padding: 35px 25px;
+                max-width: 100%;
+                width: 95%;
+                border-radius: 20px;
+            }
+            
+            .auth-logo {
+                font-size: 24px;
+                margin-bottom: 30px;
+            }
+            
+            .auth-logo-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 22px;
+            }
+            
+            .form-control,
+            .form-select {
+                padding: 14px 16px;
+                font-size: 16px;
+                border-radius: 10px;
+            }
+            
+            .dashboard-header {
+                padding: 16px 0;
+            }
+            
+            .dashboard-header .header-content {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0;
+            }
+            
+            .dashboard-layout {
+                padding: 120px 0 30px;
+                gap: 25px;
+            }
+            
+            .sidebar {
+                padding: 25px;
+                border-radius: 20px;
+            }
+            
+            .user-avatar {
+                width: 70px;
+                height: 70px;
+                font-size: 1.8rem;
+                margin: 0 auto 15px;
+            }
+            
+            .nav-item {
+                padding: 14px 16px;
+                gap: 12px;
+            }
+            
+            .balance-card {
+                padding: 30px 20px;
+                border-radius: 20px;
+            }
+            
+            .balance-amount {
+                font-size: 2.8rem;
+                margin-bottom: 25px;
+            }
+            
+            .balance-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .usage-section,
+            .loan-section,
+            .advice-section,
+            .transactions-section,
+            .savings-section {
+                padding: 30px 20px;
+            }
+            
+            .dashboard-section-title {
+                font-size: 1.5rem;
+                margin-bottom: 25px;
+            }
+            
+            .section-header {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 15px;
+            }
+            
+            .loan-cards {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .advice-cards {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .savings-goals {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .ai-chatbox {
+                width: calc(100vw - 40px);
+                bottom: 70px;
+                right: 20px;
+                left: 20px;
+                max-width: 100%;
+            }
+            
+            .ai-messages {
+                max-height: 300px;
+            }
+            
+            .modal {
+                width: 90%;
+                max-width: 100%;
+                padding: 30px 20px;
+                border-radius: 20px;
+            }
+            
+            .modal-footer {
+                flex-direction: column;
+            }
+            
+            .period-selector {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .usage-grid {
+                gap: 25px;
+            }
+        }
+
+        /* Mobile - Small (480px and below) */
+        @media (max-width: 480px) {
+            * {
+                -webkit-tap-highlight-color: transparent;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+            
+            section {
+                padding: 50px 0;
+            }
+            
+            .landing-header {
+                padding: 14px 0;
+                position: fixed;
+                width: 100%;
+                z-index: 1000;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+            
+            .logo {
+                font-size: 1.3rem;
+                gap: 8px;
+                margin-bottom: 10px;
+            }
+            
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+                border-radius: 8px;
+            }
+            
+            .landing-nav {
+                width: 100%;
+            }
+            
+            .landing-nav ul {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+                width: 100%;
+            }
+            
+            .landing-nav a {
+                font-size: 0.9rem;
+                padding: 6px 0;
+            }
+            
+            .header-actions {
+                width: 100%;
+                gap: 12px;
+            }
+            
+            .btn {
+                width: 100%;
+                padding: 12px 16px;
+                font-size: 0.95rem;
+                border-radius: 12px;
+            }
+            
+            .btn-primary,
+            .btn-secondary,
+            .btn-light {
+                width: 100%;
+            }
+            
+            .cta-buttons {
+                width: 100%;
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .hero {
+                padding: 120px 0 50px;
+                background: var(--gradient-hero);
+            }
+            
+            .hero-content {
+                gap: 40px;
+            }
+            
+            .hero-text h1 {
+                font-size: 1.8rem;
+                line-height: 1.2;
+                margin-bottom: 20px;
+            }
+            
+            .hero-text p {
+                font-size: 0.95rem;
+                margin-bottom: 25px;
+                line-height: 1.5;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+                margin-top: 30px;
+            }
+            
+            .hero-stat {
+                text-align: left;
+            }
+            
+            .stat-number {
+                font-size: 1.8rem;
+            }
+            
+            .stat-label {
+                font-size: 0.8rem;
+                color: var(--gray-light);
+            }
+            
+            .hero-card {
+                padding: 20px;
+                border-radius: 16px;
+                transform: none !important;
+            }
+            
+            .card-header {
+                margin-bottom: 20px;
+            }
+            
+            .card-balance {
+                font-size: 1.8rem;
+            }
+            
+            .card-item {
+                padding: 12px;
+                gap: 12px;
+                border-radius: 10px;
+            }
+            
+            .card-icon {
+                width: 35px;
+                height: 35px;
+                border-radius: 8px;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+                margin-bottom: 12px;
+            }
+            
+            .section-subtitle {
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+            
+            .section-header {
+                margin-bottom: 35px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .feature-card {
+                padding: 25px 18px;
+                border-radius: 18px;
+            }
+            
+            .feature-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.4rem;
+                margin-bottom: 20px;
+            }
+            
+            .feature-title {
+                font-size: 1.2rem;
+                margin-bottom: 15px;
+            }
+            
+            .feature-description {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+            
+            .steps {
+                gap: 20px;
+            }
+            
+            .step {
+                width: 100%;
+                padding: 25px 18px;
+                border-radius: 16px;
+            }
+            
+            .step-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.4rem;
+            }
+            
+            .step-title {
+                font-size: 1.1rem;
+                margin-bottom: 12px;
+            }
+            
+            .step-description {
+                font-size: 0.85rem;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+            
+            .testimonial-card {
+                padding: 25px 18px;
+                border-radius: 16px;
+            }
+            
+            .testimonial-content {
+                font-size: 0.9rem;
+                margin-bottom: 20px;
+            }
+            
+            .author-avatar {
+                width: 45px;
+                height: 45px;
+                font-size: 0.9rem;
+            }
+            
+            .author-info h4 {
+                font-size: 0.95rem;
+            }
+            
+            .author-info p {
+                font-size: 0.8rem;
+            }
+            
+            .cta {
+                padding: 50px 0;
+            }
+            
+            .cta h2 {
+                font-size: 1.6rem;
+                margin-bottom: 15px;
+                line-height: 1.2;
+            }
+            
+            .cta p {
+                font-size: 0.95rem;
+                margin-bottom: 25px;
+                line-height: 1.5;
+            }
+            
+            .footer {
+                padding: 50px 0 25px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .footer-logo {
+                font-size: 1.3rem;
+                margin-bottom: 15px;
+            }
+            
+            .footer-description {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+            
+            .footer-links h3 {
+                font-size: 1.05rem;
+                margin-bottom: 15px;
+            }
+            
+            .footer-links li {
+                margin-bottom: 10px;
+                font-size: 0.9rem;
+            }
+            
+            .footer-bottom {
+                font-size: 0.8rem;
+                padding-top: 25px;
+            }
+            
+            .auth-container {
+                padding: 30px 15px;
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            .auth-card {
+                padding: 30px 18px;
+                max-width: 100%;
+                width: 100%;
+                border-radius: 16px;
+            }
+            
+            .auth-logo {
+                font-size: 20px;
+                margin-bottom: 25px;
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .auth-logo-icon {
+                width: 44px;
+                height: 44px;
+                font-size: 20px;
+            }
+            
+            .auth-tabs {
+                margin-bottom: 30px;
+                border-radius: 12px;
+                padding: 6px;
+                gap: 8px;
+            }
+            
+            .auth-tab {
+                padding: 14px 12px;
+                font-size: 0.9rem;
+                border-radius: 10px;
+            }
+            
+            .form-group {
+                margin-bottom: 18px;
+            }
+            
+            .form-label {
+                font-size: 0.9rem;
+                margin-bottom: 6px;
+            }
+            
+            .form-control,
+            .form-select {
+                padding: 12px 14px;
+                font-size: 16px;
+                border-radius: 10px;
+            }
+            
+            .form-text {
+                font-size: 0.8rem;
+                margin-top: 6px;
+            }
+            
+            .auth-footer {
+                margin-top: 20px;
+                font-size: 0.85rem;
+            }
+            
+            .dashboard-header {
+                padding: 12px 0;
+            }
+            
+            .dashboard-header .header-content {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0;
+            }
+            
+            .dashboard-header .landing-nav ul {
+                display: none;
+            }
+            
+            .dashboard-header .header-actions {
+                width: auto;
+                flex-direction: row;
+            }
+            
+            .dashboard-header .btn {
+                width: auto;
+                padding: 10px 14px;
+                font-size: 0.85rem;
+            }
+            
+            .dashboard-layout {
+                padding: 100px 0 25px;
+                gap: 20px;
+            }
+            
+            .sidebar {
+                padding: 20px;
+                border-radius: 16px;
+                width: 100%;
+            }
+            
+            .user-profile {
+                margin-bottom: 30px;
+                padding-bottom: 20px;
+            }
+            
+            .user-avatar {
+                width: 60px;
+                height: 60px;
+                font-size: 1.6rem;
+                margin: 0 auto 12px;
+            }
+            
+            .user-name {
+                font-size: 1.2rem;
+                margin-bottom: 6px;
+            }
+            
+            .user-status {
+                font-size: 0.85rem;
+                padding: 5px 12px;
+            }
+            
+            .nav-menu {
+                gap: 8px;
+            }
+            
+            .nav-item {
+                padding: 12px 14px;
+                font-size: 0.95rem;
+                gap: 12px;
+                border-radius: 10px;
+            }
+            
+            .nav-icon {
+                font-size: 1rem;
+            }
+            
+            .balance-card {
+                padding: 25px 18px;
+                border-radius: 18px;
+            }
+            
+            .balance-label {
+                font-size: 0.9rem;
+            }
+            
+            .balance-amount {
+                font-size: 2.2rem;
+                margin-bottom: 20px;
+                line-height: 1;
+            }
+            
+            .balance-stats {
+                flex-direction: column;
+                gap: 18px;
+            }
+            
+            .balance-stat {
+                flex-direction: column;
+            }
+            
+            .stat-label {
+                font-size: 0.8rem;
+            }
+            
+            .stat-value {
+                font-size: 1.3rem;
+                margin-top: 4px;
+            }
+            
+            .main-content {
+                gap: 25px;
+            }
+            
+            .savings-section,
+            .usage-section,
+            .loan-section,
+            .advice-section,
+            .transactions-section {
+                padding: 25px 18px;
+                border-radius: 16px;
+            }
+            
+            .dashboard-section-title {
+                font-size: 1.4rem;
+                margin-bottom: 20px;
+            }
+            
+            .savings-goals {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+            
+            .goal-card {
+                padding: 20px;
+                border-radius: 14px;
+            }
+            
+            .goal-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+            
+            .loan-cards {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+            
+            .loan-card {
+                padding: 20px;
+                border-radius: 14px;
+            }
+            
+            .loan-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+            
+            .loan-name {
+                font-size: 1.1rem;
+            }
+            
+            .loan-description {
+                font-size: 0.85rem;
+                margin-bottom: 15px;
+            }
+            
+            .loan-details {
+                flex-direction: column;
+                gap: 15px;
+                margin-bottom: 18px;
+            }
+            
+            .detail-label {
+                font-size: 0.8rem;
+            }
+            
+            .detail-value {
+                font-size: 1.1rem;
+            }
+            
+            .advice-cards {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+            
+            .advice-card {
+                padding: 20px;
+                border-radius: 14px;
+            }
+            
+            .advice-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+            
+            .advice-title {
+                font-size: 1.1rem;
+            }
+            
+            .advice-text {
+                font-size: 0.85rem;
+                margin-bottom: 15px;
+            }
+            
+            .transactions-list {
+                gap: 12px;
+            }
+            
+            .transaction-item {
+                gap: 12px;
+                padding: 15px;
+                border-radius: 12px;
+            }
+            
+            .transaction-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+            
+            .transaction-title {
+                font-size: 0.95rem;
+                margin-bottom: 3px;
+            }
+            
+            .transaction-date {
+                font-size: 0.8rem;
+            }
+            
+            .transaction-amount {
+                font-size: 1rem;
+            }
+            
+            .category-item {
+                gap: 12px;
+                padding: 15px;
+                border-radius: 12px;
+            }
+            
+            .category-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+            
+            .period-selector {
+                width: 100%;
+                gap: 6px;
+                padding: 6px;
+            }
+            
+            .period-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .ai-toggle {
+                width: 54px;
+                height: 54px;
+                font-size: 22px;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .ai-chatbox {
+                width: calc(100vw - 30px);
+                bottom: 74px;
+                right: 15px;
+                left: 15px;
+                max-width: 100%;
+                border-radius: 16px;
+            }
+            
+            .ai-header {
+                padding: 16px;
+            }
+            
+            .ai-title {
+                font-size: 1rem;
+                gap: 8px;
+            }
+            
+            .ai-language {
+                margin-top: 8px;
+                gap: 6px;
+            }
+            
+            .lang-btn {
+                padding: 5px 10px;
+                font-size: 0.75rem;
+            }
+            
+            .ai-messages {
+                max-height: 250px;
+                padding: 16px;
+                gap: 15px;
+            }
+            
+            .ai-message {
+                font-size: 0.85rem;
+            }
+            
+            .ai-input {
+                padding: 14px;
+            }
+            
+            .ai-input input {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+            
+            .ai-input button {
+                width: 42px;
+                height: 42px;
+                font-size: 16px;
+            }
+            
+            .modal-overlay {
+                padding: 15px;
+            }
+            
+            .modal {
+                width: 100%;
+                max-width: 100%;
+                padding: 25px 18px;
+                border-radius: 16px;
+            }
+            
+            .modal-header {
+                margin-bottom: 20px;
+            }
+            
+            .modal-title {
+                font-size: 1.3rem;
+            }
+            
+            .modal-close {
+                width: 36px;
+                height: 36px;
+                font-size: 1.1rem;
+            }
+            
+            .modal-footer {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .modal-footer .btn {
+                width: 100%;
+            }
+        }
+
+        /* Extra small devices (under 360px) */
+        @media (max-width: 360px) {
+            .container {
+                padding: 0 12px;
+            }
+            
+            .hero-text h1 {
+                font-size: 1.6rem;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+            }
+            
+            .cta h2 {
+                font-size: 1.4rem;
+            }
+            
+            .balance-amount {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                padding: 11px 14px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Patterns -->
+    <div class="zambian-pattern"></div>
+    <div class="money-flow" id="moneyFlow"></div>
+
+    <!-- Landing Page -->
+    <div id="landingPage">
+        <!-- Header -->
+        <header class="landing-header">
+            <div class="container header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <span>Maexus Zambia</span>
+                </div>
+                <nav class="landing-nav">
+                    <ul>
+                        <li><a href="#home" class="active">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <button class="btn btn-secondary" id="loginBtn">Sign In</button>
+                    <button class="btn btn-primary" id="signupBtn">Get Started</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Smart Loans & Financial Guidance for Zambia</h1>
+                        <p>Maexus combines AI-powered financial advice with accessible loans. Track expenses, save smarter, and grow your wealth with our intelligent platform designed for Zambians.</p>
+                        <div class="cta-buttons">
+                            <button class="btn btn-light" id="heroSignupBtn">
+                                <i class="fas fa-rocket"></i>
+                                Start Free Trial
+                            </button>
+                            <button class="btn btn-secondary" id="heroLearnMore">
+                                <i class="fas fa-play-circle"></i>
+                                Watch Demo
+                            </button>
+                        </div>
+                        <div class="hero-stats">
+                            <div class="hero-stat">
+                                <div class="stat-number">10,000+</div>
+                                <div class="stat-label">Active Users</div>
+                            </div>
+                            <div class="hero-stat">
+                                <div class="stat-number">ZMW 50M+</div>
+                                <div class="stat-label">Loans Disbursed</div>
+                            </div>
+                            <div class="hero-stat">
+                                <div class="stat-number">4.8★</div>
+                                <div class="stat-label">Customer Rating</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <div class="hero-card">
+                            <div class="card-header">
+                                <div>
+                                    <div style="color: var(--gray-light); font-size: 0.9rem;">Welcome to Maexus</div>
+                                    <div class="card-balance">ZMW 24,850</div>
+                                </div>
+                                <div style="width: 50px; height: 50px; background: var(--gradient-primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                            </div>
+                            <div class="card-list">
+                                <div class="card-item">
+                                    <div class="card-icon">
+                                        <i class="fas fa-piggy-bank"></i>
+                                    </div>
+                                    <div>
+                                        <div style="font-weight: 600;">Savings Goal</div>
+                                        <div style="color: var(--gray-light); font-size: 0.9rem;">ZMW 20,000 for New Car</div>
+                                    </div>
+                                </div>
+                                <div class="card-item">
+                                    <div class="card-icon">
+                                        <i class="fas fa-file-invoice-dollar"></i>
+                                    </div>
+                                    <div>
+                                        <div style="font-weight: 600;">Active Loan</div>
+                                        <div style="color: var(--gray-light); font-size: 0.9rem;">ZMW 15,000 Business Loan</div>
+                                    </div>
+                                </div>
+                                <div class="card-item">
+                                    <div class="card-icon">
+                                        <i class="fas fa-robot"></i>
+                                    </div>
+                                    <div>
+                                        <div style="font-weight: 600;">AI Assistant</div>
+                                        <div style="color: var(--gray-light); font-size: 0.9rem;">Ready to help in your language</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Powerful Features for Your Financial Success</h2>
+                    <p class="section-subtitle">Everything you need to manage your finances, grow your savings, and access smart loans</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3 class="feature-title">AI Financial Assistant</h3>
+                        <p class="feature-description">Get personalized financial advice in Bemba, Nyanja, Lozi, or English. Our AI understands your spending patterns and provides actionable insights.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-piggy-bank"></i>
+                        </div>
+                        <h3 class="feature-title">Smart Savings Tracker</h3>
+                        <p class="feature-description">Set savings goals, track progress, and get automated savings recommendations based on your income and spending habits.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                        </div>
+                        <h3 class="feature-title">Quick Loan Access</h3>
+                        <p class="feature-description">Apply for agricultural, business, or emergency loans with competitive rates. Get instant decisions and fast disbursement.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3 class="feature-title">Expense Analytics</h3>
+                        <p class="feature-description">Visualize your spending patterns, categorize expenses, and identify opportunities to save more money each month.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Secure & Protected</h3>
+                        <p class="feature-description">Bank-level security with encryption and multi-factor authentication to keep your financial data safe and private.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Mobile First Design</h3>
+                        <p class="feature-description">Access your finances anywhere with our mobile-optimized platform. Works perfectly on all devices.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="how-it-works" id="how-it-works">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">How Maexus Works</h2>
+                    <p class="section-subtitle">Get started in just three simple steps</p>
+                </div>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Create Your Account</h3>
+                        <p class="step-description">Sign up in minutes with your basic information. Choose your preferred language for the AI assistant.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Connect Your Finances</h3>
+                        <p class="step-description">Link your bank accounts or add manual transactions to track your income and expenses.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Start Growing</h3>
+                        <p class="step-description">Get personalized advice, set savings goals, or apply for loans tailored to your financial situation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials" id="testimonials">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">What Our Users Say</h2>
+                    <p class="section-subtitle">Join thousands of Zambians who have transformed their financial lives</p>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            "Maexus helped me save for my farming equipment. The agricultural loan process was so easy, and the AI assistant explained everything in Bemba. I've never felt more in control of my finances."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">MM</div>
+                            <div class="author-info">
+                                <h4>Mvula Mapalo.</h4>
+                                <p>Farmer, Lusaka</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            "As a small business owner, the expense tracking feature has been a game-changer. I can see exactly where my money goes each month and the AI suggestions have helped me cut costs by 20%."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">NC</div>
+                            <div class="author-info">
+                                <h4>Nchimunya Chipasha.</h4>
+                                <p>Business Owner, Ndola</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            "The savings goals feature motivated me to save for my daughter's education. Watching the progress bar fill up each month kept me disciplined. I reached my target 3 months early!"
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">BN</div>
+                            <div class="author-info">
+                                <h4>Blessings Nkubo.</h4>
+                                <p>Teacher, Livingstone</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta" id="contact">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready to Transform Your Finances?</h2>
+                    <p>Join Maexus today and take control of your financial future. Get personalized advice, smart loans, and powerful tracking tools—all in one platform.</p>
+                    <div class="cta-buttons">
+                        <button class="btn btn-light" id="ctaSignupBtn">
+                            <i class="fas fa-user-plus"></i>
+                            Sign Up Free
+                        </button>
+                        <button class="btn btn-secondary" id="ctaDemoBtn">
+                            <i class="fas fa-calendar-alt"></i>
+                            Book a Demo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-about">
+                        <div class="footer-logo">
+                            <i class="fas fa-hand-holding-usd"></i>
+                            Maexus Zambia
+                        </div>
+                        <p class="footer-description">
+                            Empowering Zambians with smart financial tools, accessible loans, and AI-powered guidance to achieve financial freedom and build wealth.
+                        </p>
+                        <div style="display: flex; gap: 20px; margin-top: 20px;">
+                            <a href="#" style="color: var(--gray-light);"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" style="color: var(--gray-light);"><i class="fab fa-twitter"></i></a>
+                            <a href="#" style="color: var(--gray-light);"><i class="fab fa-instagram"></i></a>
+                            <a href="#" style="color: var(--gray-light);"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-links">
+                        <h3>Platform</h3>
+                        <ul>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#how-it-works">How It Works</a></li>
+                            <li><a href="#testimonials">Testimonials</a></li>
+                            <li><a href="#pricing">Pricing</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="#blog">Blog</a></li>
+                            <li><a href="#guides">Financial Guides</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                            <li><a href="#support">Support</a></li>
+                            <li><a href="#privacy">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links">
+                        <h3>Contact Us</h3>
+                        <ul>
+                            <li><i class="fas fa-envelope"></i> maexus@gmail.com</li>
+                            <li><i class="fas fa-phone"></i> +260 777 258 651 </li>
+                            <li><i class="fas fa-map-marker-alt"></i> Lusaka, Zambia</li>
+                            <li><i class="fas fa-clock"></i> Mon-Fri: 8AM-5PM</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Maexus Zambia. All rights reserved. | Designed for Zambian financial empowerment</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Authentication Screen -->
+    <div class="auth-container" id="authScreen" style="display: none;">
+        <div class="auth-card">
+            <div class="auth-logo">
+                <div class="auth-logo-icon">
+                    <i class="fas fa-hand-holding-usd"></i>
+                </div>
+                <span>Maexus Zambia</span>
+            </div>
+            
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Sign In</button>
+                <button class="auth-tab" data-tab="register">Create Account</button>
+            </div>
+            
+            <!-- Login Form -->
+            <div class="auth-form active" id="loginForm">
+                <form id="loginFormElement">
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="loginEmail" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Sign In
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="auth-footer">
+                    <p>Don't have an account? <span class="auth-link" data-tab="register">Create Account</span></p>
+                    <p style="margin-top: 10px;"><a href="#" style="color: var(--primary);">Forgot your password?</a></p>
+                </div>
+            </div>
+            
+            <!-- Registration Form -->
+            <div class="auth-form" id="registerForm">
+                <form id="registerFormElement">
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="registerName" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="registerEmail" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" id="registerPhone" placeholder="Enter your phone number" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Preferred Language</label>
+                        <select class="form-select" id="registerLanguage">
+                            <option value="en">English</option>
+                            <option value="bem">Bemba</option>
+                            <option value="nya">Nyanja</option>
+                            <option value="tum">Tumbuka</option>
+                            <option value="loz">Lozi</option>
+                            <option value="ton">Tonga</option>
+                        </select>
+                        <div class="form-text">AI assistant will speak to you in this language</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" id="registerPassword" placeholder="Create a strong password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="registerConfirmPassword" placeholder="Confirm your password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                            <input type="checkbox" id="terms" required style="width: 20px; height: 20px;">
+                            <label for="terms" style="color: var(--gray-light); font-size: 0.9rem;">
+                                I agree to the <a href="#" style="color: var(--primary);">Terms of Service</a> and <a href="#" style="color: var(--primary);">Privacy Policy</a>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-user-plus"></i>
+                            Create Account
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="auth-footer">
+                    <p>Already have an account? <span class="auth-link" data-tab="login">Sign In</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div id="dashboardPage">
+        <!-- Dashboard Header -->
+        <header class="dashboard-header" id="mainHeader">
+            <div class="container header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <span>Maexus Zambia</span>
+                </div>
+                <nav class="landing-nav">
+                    <ul>
+                        <li><a href="#dashboard" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="#loans"><i class="fas fa-file-invoice-dollar"></i> Loans</a></li>
+                        <li><a href="#savings"><i class="fas fa-piggy-bank"></i> Savings</a></li>
+                        <li><a href="#advice"><i class="fas fa-lightbulb"></i> Advice</a></li>
+                        <li><a href="#transactions"><i class="fas fa-history"></i> History</a></li>
+                        <li><a href="#profile"><i class="fas fa-user"></i> Profile</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <button class="btn btn-secondary" id="backToHomeBtn">
+                        <i class="fas fa-home"></i>
+                        Home
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- AI Assistant -->
+        <div class="ai-assistant">
+            <button class="ai-toggle" id="aiToggle">
+                <i class="fas fa-dollar-sign"></i>
+            </button>
+            
+            <div class="ai-chatbox" id="aiChatbox">
+                <div class="ai-header">
+                    <div class="ai-title">
+                        <i class="fas fa-robot"></i>
+                        Maexus AI Assistant
+                    </div>
+                    <div class="ai-language">
+                        <button class="lang-btn active" data-lang="en">English</button>
+                        <button class="lang-btn" data-lang="bem">Bemba</button>
+                        <button class="lang-btn" data-lang="nya">Nyanja</button>
+                        <button class="lang-btn" data-lang="loz">Lozi</button>
+                    </div>
+                </div>
+                
+                <div class="ai-messages" id="aiMessages">
+                    <div class="ai-message bot">
+                        Hello! I'm your Maexus AI assistant. I can help you with financial advice, loan applications, and savings tips in your preferred Zambian language. How can I assist you today?
+                    </div>
+                </div>
+                
+                <div class="ai-input">
+                    <form id="aiForm">
+                        <input type="text" id="aiInput" placeholder="Ask me anything about finances..." required>
+                        <button type="submit">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Expense Modal -->
+        <div class="modal-overlay" id="expenseModal">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3 class="modal-title">Add New Expense</h3>
+                    <button class="modal-close" id="closeModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="modal-body">
+                    <form id="expenseForm">
+                        <div class="form-group">
+                            <label class="form-label">Expense Category</label>
+                            <select class="form-select" id="expenseCategory" required>
+                                <option value="">Select category</option>
+                                <option value="food">Food & Groceries</option>
+                                <option value="transport">Transport</option>
+                                <option value="rent">Rent & Utilities</option>
+                                <option value="entertainment">Entertainment</option>
+                                <option value="shopping">Shopping</option>
+                                <option value="health">Health</option>
+                                <option value="education">Education</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Amount (ZMW)</label>
+                            <input type="number" class="form-control" id="expenseAmount" placeholder="Enter amount" required min="1">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Description</label>
+                            <input type="text" class="form-control" id="expenseDescription" placeholder="What was this expense for?" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Date</label>
+                            <input type="date" class="form-control" id="expenseDate" required>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" id="cancelExpense">Cancel</button>
+                    <button class="btn btn-primary" id="saveExpense">Save Expense</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Dashboard -->
+        <main class="container dashboard-layout" id="dashboard">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="user-profile">
+                    <div class="user-avatar" id="userAvatar">CM</div>
+                    <h3 class="user-name" id="userName">Chanda Mapalo.</h3>
+                    <div class="user-status">
+                        <i class="fas fa-check-circle"></i>
+                        <span id="userStatus">Verified Customer</span>
+                    </div>
+                </div>
+                
+                <nav class="nav-menu">
+                    <div class="nav-item active" data-section="dashboard">
+                        <div class="nav-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        <span>Dashboard</span>
+                    </div>
+                    <div class="nav-item" data-section="savings">
+                        <div class="nav-icon"><i class="fas fa-piggy-bank"></i></div>
+                        <span>My Savings</span>
+                    </div>
+                    <div class="nav-item" data-section="expenses">
+                        <div class="nav-icon"><i class="fas fa-chart-pie"></i></div>
+                        <span>Spending</span>
+                    </div>
+                    <div class="nav-item" data-section="loans">
+                        <div class="nav-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                        <span>Active Loans</span>
+                    </div>
+                    <div class="nav-item" data-section="advice">
+                        <div class="nav-icon"><i class="fas fa-lightbulb"></i></div>
+                        <span>Financial Tips</span>
+                    </div>
+                    <div class="nav-item" data-section="profile">
+                        <div class="nav-icon"><i class="fas fa-cog"></i></div>
+                        <span>Settings</span>
+                    </div>
+                    <div class="nav-item" id="logoutBtn">
+                        <div class="nav-icon"><i class="fas fa-sign-out-alt"></i></div>
+                        <span>Log Out</span>
+                    </div>
+                </nav>
+                
+                <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--card-border);">
+                    <div style="color: var(--gray-light); font-size: 0.9rem; margin-bottom: 10px;">Credit Score</div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="flex: 1; background: rgba(255,255,255,0.1); height: 8px; border-radius: 4px; overflow: hidden;">
+                            <div style="width: 78%; height: 100%; background: var(--gradient-primary);" id="creditScoreBar"></div>
+                        </div>
+                        <div style="font-weight: 700; font-size: 1.2rem;" id="creditScore">780</div>
+                    </div>
+                    <div style="color: var(--gray-light); font-size: 0.8rem; margin-top: 8px;" id="creditStatus">Good • Eligible for all loans</div>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Balance Card -->
+                <section class="balance-card">
+                    <div class="balance-content">
+                        <div class="balance-label">Available Balance</div>
+                        <div class="balance-amount" id="totalBalance">ZMW 24,850</div>
+                        <div style="margin-top: 30px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div>
+                                <label style="display: block; font-size: 0.9rem; margin-bottom: 8px; opacity: 0.9;">Amount to Save (ZMW)</label>
+                                <input type="number" id="amountToSave" placeholder="Enter amount" min="0" style="width: 100%; padding: 12px 16px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; color: white; font-size: 1rem;" />
+                            </div>
+                            <div>
+                                <label style="display: block; font-size: 0.9rem; margin-bottom: 8px; opacity: 0.9;">Amount Spent (ZMW)</label>
+                                <input type="number" id="amountSpent" placeholder="Enter amount" min="0" style="width: 100%; padding: 12px 16px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; color: white; font-size: 1rem;" />
+                            </div>
+                        </div>
+                        <button class="btn btn-light" id="updateBalanceBtn" style="width: 100%; margin-top: 20px;">
+                            <i class="fas fa-calculator"></i>
+                            Calculate
+                        </button>
+                        <div class="balance-stats" style="margin-top: 30px;">
+                            <div class="balance-stat">
+                                <div class="stat-label">Amount Spent This Month</div>
+                                <div class="stat-value" id="monthlyExpenses">ZMW 8,240</div>
+                            </div>
+                            <div class="balance-stat">
+                                <div class="stat-label">Amount Saved</div>
+                                <div class="stat-value" id="totalSavings">ZMW 3,610</div>
+                            </div>
+                            <div class="balance-stat">
+                                <div class="stat-label">Remaining Balance</div>
+                                <div class="stat-value" id="remainingBalance">ZMW 13,000</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Savings Goals -->
+                <section class="savings-section" id="savings">
+                    <div class="section-header">
+                        <h2 class="dashboard-section-title">Savings Goals</h2>
+                        <button class="btn btn-primary" id="addGoalBtn">
+                            <i class="fas fa-plus"></i>
+                            Add Goal
+                        </button>
+                    </div>
+                    
+                    <div class="savings-goals">
+                        <div class="goal-card">
+                            <div class="goal-header">
+                                <div class="goal-icon">
+                                    <i class="fas fa-car"></i>
+                                </div>
+                                <button class="btn btn-secondary" style="padding: 8px 16px; font-size: 0.9rem;">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                            <h3>New Car</h3>
+                            <div class="goal-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 65%"></div>
+                                </div>
+                                <div class="goal-info">
+                                    <span>ZMW 13,000 saved</span>
+                                    <span>ZMW 20,000 target</span>
+                                </div>
+                            </div>
+                            <div class="goal-target">ZMW 20,000</div>
+                            <div style="color: var(--gray-light); font-size: 0.9rem;">Target: June 2024</div>
+                        </div>
+                        
+                        <div class="goal-card">
+                            <div class="goal-header">
+                                <div class="goal-icon">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                <button class="btn btn-secondary" style="padding: 8px 16px; font-size: 0.9rem;">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                            <h3>House Down Payment</h3>
+                            <div class="goal-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 42%"></div>
+                                </div>
+                                <div class="goal-info">
+                                    <span>ZMW 42,000 saved</span>
+                                    <span>ZMW 100,000 target</span>
+                                </div>
+                            </div>
+                            <div class="goal-target">ZMW 100,000</div>
+                            <div style="color: var(--gray-light); font-size: 0.9rem;">Target: Dec 2025</div>
+                        </div>
+                        
+                        <div class="goal-card">
+                            <div class="goal-header">
+                                <div class="goal-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <button class="btn btn-secondary" style="padding: 8px 16px; font-size: 0.9rem;">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                            <h3>Education Fund</h3>
+                            <div class="goal-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 28%"></div>
+                                </div>
+                                <div class="goal-info">
+                                    <span>ZMW 7,000 saved</span>
+                                    <span>ZMW 25,000 target</span>
+                                </div>
+                            </div>
+                            <div class="goal-target">ZMW 25,000</div>
+                            <div style="color: var(--gray-light); font-size: 0.9rem;">Target: March 2024</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Usage Tracking -->
+                <section class="usage-section" id="expenses">
+                    <div class="section-header">
+                        <h2 class="dashboard-section-title">Spending Tracker</h2>
+                        <div style="display: flex; gap: 15px;">
+                            <div class="period-selector">
+                                <button class="period-btn active">Week</button>
+                                <button class="period-btn">Month</button>
+                                <button class="period-btn">Year</button>
+                            </div>
+                            <button class="btn btn-primary" id="addExpenseBtn">
+                                <i class="fas fa-plus"></i>
+                                Add Expense
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="usage-grid">
+                        <div class="spending-chart">
+                            <div class="chart-placeholder">
+                                <i class="fas fa-chart-bar"></i>
+                                <div>Spending Analysis Chart</div>
+                                <div style="font-size: 0.9rem; margin-top: 10px;">Track your expenses visually</div>
+                            </div>
+                        </div>
+                        
+                        <div class="categories-list" id="expenseCategories">
+                            <!-- Dynamic categories will be added here -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Loan Section -->
+                <section class="loan-section" id="loans">
+                    <div class="section-header">
+                        <h2 class="dashboard-section-title">Available Loans</h2>
+                        <button class="btn btn-primary" id="applyLoanBtn">
+                            <i class="fas fa-plus"></i>
+                            Apply for Loan
+                        </button>
+                    </div>
+                    
+                    <div class="loan-cards">
+                        <!-- Dynamic loan cards will be added here -->
+                    </div>
+                    
+                    <div style="background: rgba(25, 135, 84, 0.1); border-radius: 16px; padding: 25px; margin-top: 30px;" id="activeLoanSection">
+                        <!-- Active loan info will be added here -->
+                    </div>
+                </section>
+
+                <!-- Financial Advice -->
+                <section class="advice-section" id="advice">
+                    <div class="section-header">
+                        <h2 class="dashboard-section-title">Smart Financial Advice</h2>
+                    </div>
+                    
+                    <div class="advice-cards" id="adviceCards">
+                        <!-- Dynamic advice cards will be added here -->
+                    </div>
+                </section>
+
+                <!-- Transaction History -->
+                <section class="transactions-section" id="transactions">
+                    <div class="section-header">
+                        <h2 class="dashboard-section-title">Recent Transactions</h2>
+                        <button class="btn btn-primary" id="exportHistoryBtn">
+                            <i class="fas fa-download"></i>
+                            Export History
+                        </button>
+                    </div>
+                    
+                    <div class="transactions-list" id="transactionsList">
+                        <!-- Dynamic transactions will be added here -->
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // User data storage
+        let currentUser = null;
+        let userLanguage = 'en';
+        
+        // Sample data for demonstration
+        const sampleUser = {
+            name: 'Chanda K.',
+            email: 'chanda@example.com',
+            phone: '+260 97 123 4567',
+            language: 'bem',
+            avatar: 'CK',
+            balance: 24850,
+            monthlyExpenses: 8240,
+            loanBalance: 15000,
+            savings: 3610,
+            creditScore: 780
+        };
+
+        const sampleExpenses = [
+            { category: 'rent', name: 'Rent & Utilities', amount: 2400, percentage: 29 },
+            { category: 'food', name: 'Groceries', amount: 1850, percentage: 22 },
+            { category: 'transport', name: 'Transport', amount: 980, percentage: 12 },
+            { category: 'entertainment', name: 'Eating Out', amount: 1250, percentage: 15 },
+            { category: 'shopping', name: 'Shopping', amount: 760, percentage: 9 },
+            { category: 'health', name: 'Health', amount: 500, percentage: 6 },
+            { category: 'other', name: 'Other', amount: 500, percentage: 7 }
+        ];
+
+        const sampleLoans = [
+            { 
+                id: 1, 
+                name: 'Quick Cash Loan', 
+                description: 'Get immediate funds for urgent needs. Perfect for emergencies or unexpected expenses.',
+                amount: 5000, 
+                interest: 12, 
+                term: '3 months',
+                featured: true,
+                icon: 'bolt'
+            },
+            { 
+                id: 2, 
+                name: 'Agricultural Loan', 
+                description: 'Finance for farming inputs, equipment, and seasonal needs. Pay after harvest.',
+                amount: 50000, 
+                interest: 8, 
+                term: '6-12 months',
+                featured: false,
+                icon: 'tractor'
+            },
+            { 
+                id: 3, 
+                name: 'Business Expansion', 
+                description: 'Grow your business with inventory financing and working capital support.',
+                amount: 100000, 
+                interest: 10, 
+                term: '12-24 months',
+                featured: false,
+                icon: 'store'
+            }
+        ];
+
+        const sampleAdvice = [
+            {
+                title: 'Save 20% of Every Income',
+                text: 'Based on your spending patterns, we recommend setting aside ZMW 4,970 from your monthly income for savings.',
+                icon: 'piggy-bank',
+                action: 'Set up auto-save'
+            },
+            {
+                title: 'Reduce Eating Out by 30%',
+                text: 'You spent ZMW 1,250 on restaurants this month. Cutting back could save you ZMW 375 monthly.',
+                icon: 'chart-line',
+                action: 'Create budget'
+            },
+            {
+                title: 'Consider Loan Consolidation',
+                text: 'Combine your debts into one lower-interest loan to save on monthly payments.',
+                icon: 'handshake',
+                action: 'Check eligibility'
+            }
+        ];
+
+        const sampleTransactions = [
+            { type: 'income', title: 'Salary Deposit', date: 'Today • 09:15 AM', amount: 8500 },
+            { type: 'expense', title: 'Rent Payment', date: 'Yesterday • 02:30 PM', amount: 2000 },
+            { type: 'expense', title: 'Supermarket Groceries', date: 'Dec 10 • 04:45 PM', amount: 850 },
+            { type: 'expense', title: 'Fuel - Total Lusaka', date: 'Dec 9 • 10:20 AM', amount: 480 },
+            { type: 'income', title: 'Loan Disbursement', date: 'Dec 8 • 11:00 AM', amount: 15000 }
+        ];
+
+        // AI responses in different languages
+        const aiResponses = {
+            en: {
+                greetings: ["Hello! How can I help you with your finances today?", "Welcome back! What financial questions do you have?", "Good day! I'm here to assist with your financial needs."],
+                savings: ["Based on your spending, I recommend saving 20% of your monthly income.", "Consider setting up automatic transfers to your savings account each month.", "Your current savings rate is good, but you could increase it by reducing dining out expenses."],
+                loans: ["You're eligible for a Quick Cash Loan of up to ZMW 5,000 with 12% interest.", "For agricultural needs, we offer special low-interest loans with flexible repayment terms.", "Business expansion loans are available with competitive rates for qualified applicants."],
+                budget: ["Your largest expense category is rent at 29% of your monthly spending.", "Try to keep dining out expenses below 10% of your total budget.", "Transport costs are reasonable at 12% - good job managing this category!"],
+                general: ["Financial health starts with tracking your expenses regularly.", "Consider investing in government bonds for stable, low-risk returns.", "Building an emergency fund of 3-6 months expenses should be your priority."]
+            },
+            bem: {
+                greetings: ["Muli shani! Ndingasunga shani pa finance yenu lelo?", "Mwaiseni kubwelako! Muli na mafungulo yafinancial yashani?", "Bushiku bwawama! Nili kuno kukusunga pa mafungulo yenu yafinancial."],
+                savings: ["Ku tampa yenu yokusenda, ndacita kulonga ukusunga 20% ya income yenu yamwezi.", "Cenjeleni ukuba na automatic transfers ku savings account yenu pa mwezi umo umo.", "Rate yenu yokusunga lelo nayo nafine, nokuti mwakwati ukwilisha yakwe pa kucepanya ifyakulya panse."],
+                loans: ["Mwaba eligible pa Quick Cash Loan ya mpaka ZMW 5,000 ne 12% interest.", "Pa mafungulo yakulima, tulapela amaloni ya low-interest ne flexible repayment terms.", "Amaloni yakulilafya business yalipo ne competitive rates pa ba applicants abalifikilwa."],
+                budget: ["Expense yenu yalikulu chabe ni rent ku 29% ya spending yenu yamwezi.", "Esheni ukukakamana ifyakulya panse pansi pa 10% ya budget yenu yonse.", "Ifya transport nafine ku 12% - ukosele bwino ukwimika ico mutengo!"] 
+            },
+            nya: {
+                greetings: ["Muli bwanji! Ndingakuthandizeni bwanji pa ndalama zanu lero?", "Takulandirani kubwerera! Muli ndi mafunso ati pa ndalama?", "Tsiku labwino! Ndili pano kuti ndikuthandizeni pa zofuna zanu za ndalama."],
+                savings: ["Pogwiritsa ntchito zosowa zanu, ndikulangiza kusunga 20% ya ndalama zanu za mwezi.", "Ganizirani kukhazikitsa zosamutsa zokha kuakaunti yanu yosunga mwezi uliwonse.", "Mtengo wanu wosunga lero ndi wabwino, koma mungawonjezere pogwiritsa ntchito zochepa zodyera panja."]
+            },
+            loz: {
+                greetings: ["Mwabona! Ndi kusikezela ki fa finance ya hao kajeno?", "Mi amuhelile hape! Mi na lipotiso zifi za finance?", "Lizazi lelitama! Ndi kona kuna ku sikezela fa mwao ya hao ya finance."]
+            }
+        };
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create money flow animation
+            const moneyFlow = document.getElementById('moneyFlow');
+            for (let i = 0; i < 30; i++) {
+                const coin = document.createElement('div');
+                coin.className = 'coin';
+                coin.style.left = Math.random() * 100 + '%';
+                coin.style.animationDelay = Math.random() * 15 + 's';
+                coin.style.opacity = Math.random() * 0.3 + 0.1;
+                coin.style.width = coin.style.height = (Math.random() * 15 + 10) + 'px';
+                moneyFlow.appendChild(coin);
+            }
+
+            // Check if user is already logged in (for demo purposes)
+            const savedUser = localStorage.getItem('maexusUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                showDashboard();
+            } else {
+                showLandingPage();
+            }
+
+            // Landing page navigation
+            document.getElementById('loginBtn').addEventListener('click', showAuthScreen);
+            document.getElementById('signupBtn').addEventListener('click', function() {
+                showAuthScreen();
+                setTimeout(() => {
+                    document.querySelector('[data-tab="register"]').click();
+                }, 100);
+            });
+
+            document.getElementById('heroSignupBtn').addEventListener('click', function() {
+                showAuthScreen();
+                setTimeout(() => {
+                    document.querySelector('[data-tab="register"]').click();
+                }, 100);
+            });
+
+            document.getElementById('heroLearnMore').addEventListener('click', function() {
+                showNotification('Demo video would play here', 'info');
+            });
+
+            document.getElementById('ctaSignupBtn').addEventListener('click', function() {
+                showAuthScreen();
+                setTimeout(() => {
+                    document.querySelector('[data-tab="register"]').click();
+                }, 100);
+            });
+
+            document.getElementById('ctaDemoBtn').addEventListener('click', function() {
+                showNotification('Demo booking modal would open here', 'info');
+            });
+
+            // Back to home button
+            document.getElementById('backToHomeBtn').addEventListener('click', function() {
+                if (confirm('Return to home page? You will remain logged in.')) {
+                    showLandingPage();
+                }
+            });
+
+            // Smooth scroll for landing page navigation
+            document.querySelectorAll('.landing-nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    if (this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 100,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Header scroll effect for landing page
+            const landingHeader = document.querySelector('.landing-header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    landingHeader.classList.add('scrolled');
+                } else {
+                    landingHeader.classList.remove('scrolled');
+                }
+            });
+
+            // Auth tab switching
+            const authTabs = document.querySelectorAll('.auth-tab');
+            const authForms = document.querySelectorAll('.auth-form');
+            const authLinks = document.querySelectorAll('.auth-link');
+
+            authTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    authTabs.forEach(t => t.classList.remove('active'));
+                    authForms.forEach(f => f.classList.remove('active'));
+                    
+                    this.classList.add('active');
+                    document.getElementById(`${tabId}Form`).classList.add('active');
+                });
+            });
+
+            authLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    authTabs.forEach(t => t.classList.remove('active'));
+                    authForms.forEach(f => f.classList.remove('active'));
+                    
+                    document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+                    document.getElementById(`${tabId}Form`).classList.add('active');
+                });
+            });
+
+            // Login form submission
+            document.getElementById('loginFormElement').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                
+                // Demo authentication
+                if (email && password) {
+                    // For demo, accept any email/password
+                    currentUser = { ...sampleUser, email };
+                    currentUser.name = email.split('@')[0];
+                    currentUser.avatar = currentUser.name.substring(0, 2).toUpperCase();
+                    
+                    // Save to localStorage
+                    localStorage.setItem('maexusUser', JSON.stringify(currentUser));
+                    
+                    // Show success message
+                    showNotification('Login successful! Welcome to Maexus Zambia.', 'success');
+                    
+                    // Show dashboard after delay
+                    setTimeout(showDashboard, 1000);
+                } else {
+                    showNotification('Please fill in all fields', 'error');
+                }
+            });
+
+            // Registration form submission
+            document.getElementById('registerFormElement').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('registerName').value;
+                const email = document.getElementById('registerEmail').value;
+                const phone = document.getElementById('registerPhone').value;
+                const language = document.getElementById('registerLanguage').value;
+                const password = document.getElementById('registerPassword').value;
+                const confirmPassword = document.getElementById('registerConfirmPassword').value;
+                
+                // Validation
+                if (!name || !email || !phone || !password || !confirmPassword) {
+                    showNotification('Please fill in all fields', 'error');
+                    return;
+                }
+                
+                if (password !== confirmPassword) {
+                    showNotification('Passwords do not match', 'error');
+                    return;
+                }
+                
+                if (password.length < 6) {
+                    showNotification('Password must be at least 6 characters', 'error');
+                    return;
+                }
+                
+                if (!document.getElementById('terms').checked) {
+                    showNotification('Please agree to the terms and conditions', 'error');
+                    return;
+                }
+                
+                // Create user
+                currentUser = {
+                    name,
+                    email,
+                    phone,
+                    language,
+                    avatar: name.substring(0, 2).toUpperCase(),
+                    balance: 5000, // Starting balance
+                    monthlyExpenses: 0,
+                    loanBalance: 0,
+                    savings: 1000,
+                    creditScore: 650
+                };
+                
+                // Save to localStorage
+                localStorage.setItem('maexusUser', JSON.stringify(currentUser));
+                
+                // Show success message
+                showNotification('Account created successfully! Welcome to Maexus Zambia.', 'success');
+                
+                // Show dashboard after delay
+                setTimeout(showDashboard, 1000);
+            });
+
+            // Logout functionality
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+                if (confirm('Are you sure you want to log out?')) {
+                    currentUser = null;
+                    localStorage.removeItem('maexusUser');
+                    
+                    // Hide dashboard, show landing page
+                    showLandingPage();
+                    
+                    showNotification('Logged out successfully', 'success');
+                }
+            });
+
+            // Add expense button
+            document.getElementById('addExpenseBtn').addEventListener('click', function() {
+                document.getElementById('expenseModal').classList.add('active');
+                document.getElementById('expenseDate').valueAsDate = new Date();
+            });
+
+            // Close modal
+            document.getElementById('closeModal').addEventListener('click', closeModal);
+            document.getElementById('cancelExpense').addEventListener('click', closeModal);
+
+            // Save expense
+            document.getElementById('saveExpense').addEventListener('click', function() {
+                const category = document.getElementById('expenseCategory').value;
+                const amount = parseFloat(document.getElementById('expenseAmount').value);
+                const description = document.getElementById('expenseDescription').value;
+                const date = document.getElementById('expenseDate').value;
+                
+                if (!category || !amount || !description || !date) {
+                    showNotification('Please fill in all fields', 'error');
+                    return;
+                }
+                
+                // Update user data
+                if (currentUser) {
+                    currentUser.monthlyExpenses += amount;
+                    currentUser.balance -= amount;
+                    
+                    // Save updated user
+                    localStorage.setItem('maexusUser', JSON.stringify(currentUser));
+                    
+                    // Update UI
+                    updateDashboard();
+                    
+                    // Show success message
+                    showNotification('Expense added successfully!', 'success');
+                    
+                    // Close modal
+                    closeModal();
+                    
+                    // Reset form
+                    document.getElementById('expenseForm').reset();
+                }
+            });
+
+            // Calculate balance button - Update based on user input
+            document.getElementById('updateBalanceBtn').addEventListener('click', function() {
+                const amountToSave = parseFloat(document.getElementById('amountToSave').value) || 0;
+                const amountSpent = parseFloat(document.getElementById('amountSpent').value) || 0;
+                
+                if (currentUser) {
+                    // Update user data based on input
+                    currentUser.savings = amountToSave;
+                    currentUser.monthlyExpenses = amountSpent;
+                    
+                    // Calculate remaining balance: initial balance - amount spent - amount saved
+                    const initialBalance = 24850; // Default initial balance
+                    currentUser.balance = initialBalance - amountSpent - amountToSave;
+                    
+                    // Ensure balance doesn't go negative
+                    if (currentUser.balance < 0) {
+                        showNotification('Total of savings and spending cannot exceed your initial balance!', 'error');
+                        currentUser.balance = initialBalance - amountSpent;
+                        currentUser.savings = 0;
+                        document.getElementById('amountToSave').value = '';
+                        return;
+                    }
+                    
+                    // Save updated user
+                    localStorage.setItem('maexusUser', JSON.stringify(currentUser));
+                    
+                    // Update UI
+                    updateDashboard();
+                    
+                    // Show success message
+                    showNotification('Balance calculated and updated successfully!', 'success');
+                }
+            });
+
+            // Apply for loan button
+            document.getElementById('applyLoanBtn').addEventListener('click', function() {
+                // For demo, show AI chat for loan application
+                document.getElementById('aiChatbox').classList.add('active');
+                addAIMessage('bot', "I can help you apply for a loan. Which type of loan are you interested in?");
+            });
+
+            // Add goal button
+            document.getElementById('addGoalBtn').addEventListener('click', function() {
+                // For demo, show AI chat for goal setting
+                document.getElementById('aiChatbox').classList.add('active');
+                addAIMessage('bot', "Let's set up a new savings goal. What are you saving for and how much do you need?");
+            });
+
+            // Export history button
+            document.getElementById('exportHistoryBtn').addEventListener('click', function() {
+                showNotification('Transaction history exported successfully!', 'success');
+            });
+
+            // AI Assistant functionality
+            document.getElementById('aiToggle').addEventListener('click', function() {
+                document.getElementById('aiChatbox').classList.toggle('active');
+            });
+
+            // AI language switching
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    userLanguage = this.getAttribute('data-lang');
+                    
+                    // Update AI greeting
+                    const greetings = aiResponses[userLanguage]?.greetings || aiResponses.en.greetings;
+                    const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+                    addAIMessage('bot', greeting);
+                });
+            });
+
+            // AI chat form
+            document.getElementById('aiForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const input = document.getElementById('aiInput');
+                const message = input.value.trim();
+                
+                if (message) {
+                    // Add user message
+                    addAIMessage('user', message);
+                    
+                    // Clear input
+                    input.value = '';
+                    
+                    // Simulate AI response after delay
+                    setTimeout(() => {
+                        generateAIResponse(message);
+                    }, 1000);
+                }
+            });
+
+            // Navigation menu interaction
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    if (this.id === 'logoutBtn') return;
+                    
+                    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const sectionId = this.getAttribute('data-section');
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        section.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // Header scroll effect for dashboard
+            const dashboardHeader = document.getElementById('mainHeader');
+            window.addEventListener('scroll', function() {
+                if (dashboardHeader.style.display === 'block' && window.scrollY > 100) {
+                    dashboardHeader.classList.add('scrolled');
+                } else {
+                    dashboardHeader.classList.remove('scrolled');
+                }
+            });
+        });
+
+        // Show landing page function
+        function showLandingPage() {
+            document.getElementById('landingPage').style.display = 'block';
+            document.getElementById('authScreen').style.display = 'none';
+            document.getElementById('dashboardPage').style.display = 'none';
+        }
+
+        // Show auth screen function
+        function showAuthScreen() {
+            document.getElementById('landingPage').style.display = 'none';
+            document.getElementById('authScreen').style.display = 'flex';
+            document.getElementById('dashboardPage').style.display = 'none';
+        }
+
+        // Show dashboard function
+        function showDashboard() {
+            document.getElementById('landingPage').style.display = 'none';
+            document.getElementById('authScreen').style.display = 'none';
+            document.getElementById('dashboardPage').style.display = 'block';
+            document.getElementById('mainHeader').style.display = 'block';
+            document.getElementById('dashboard').style.display = 'grid';
+            
+            // Update dashboard with user data
+            updateDashboard();
+        }
+
+        // Update dashboard with current user data
+        function updateDashboard() {
+            if (!currentUser) return;
+            
+            // Update user info
+            document.getElementById('userAvatar').textContent = currentUser.avatar;
+            document.getElementById('userName').textContent = currentUser.name;
+            document.getElementById('userStatus').textContent = currentUser.balance > 0 ? 'Verified Customer' : 'New Customer';
+            
+            // Update balance
+            document.getElementById('totalBalance').textContent = formatCurrency(currentUser.balance);
+            document.getElementById('monthlyExpenses').textContent = formatCurrency(currentUser.monthlyExpenses);
+            document.getElementById('totalSavings').textContent = formatCurrency(currentUser.savings);
+            document.getElementById('remainingBalance').textContent = formatCurrency(currentUser.balance);
+            
+            // Update credit score
+            document.getElementById('creditScore').textContent = currentUser.creditScore;
+            document.getElementById('creditScoreBar').style.width = `${currentUser.creditScore / 10}%`;
+            
+            let creditStatus = '';
+            if (currentUser.creditScore >= 750) creditStatus = 'Excellent • Eligible for all loans';
+            else if (currentUser.creditScore >= 700) creditStatus = 'Good • Eligible for most loans';
+            else if (currentUser.creditScore >= 650) creditStatus = 'Fair • Eligible for some loans';
+            else creditStatus = 'Needs improvement • Limited eligibility';
+            
+            document.getElementById('creditStatus').textContent = creditStatus;
+            
+            // Update expense categories
+            updateExpenseCategories();
+            
+            // Update loan cards
+            updateLoanCards();
+            
+            // Update active loan section
+            updateActiveLoanSection();
+            
+            // Update advice cards
+            updateAdviceCards();
+            
+            // Update transactions
+            updateTransactions();
+        }
+
+        // Update expense categories
+        function updateExpenseCategories() {
+            const container = document.getElementById('expenseCategories');
+            container.innerHTML = '';
+            
+            const total = sampleExpenses.reduce((sum, exp) => sum + exp.amount, 0);
+            
+            sampleExpenses.forEach(expense => {
+                const percentage = Math.round((expense.amount / total) * 100);
+                
+                const categoryIcons = {
+                    rent: 'home',
+                    food: 'shopping-cart',
+                    transport: 'car',
+                    entertainment: 'utensils',
+                    shopping: 'tshirt',
+                    health: 'heartbeat',
+                    other: 'ellipsis-h'
+                };
+                
+                const categoryElement = document.createElement('div');
+                categoryElement.className = 'category-item';
+                categoryElement.innerHTML = `
+                    <div class="category-icon">
+                        <i class="fas fa-${categoryIcons[expense.category] || 'tag'}"></i>
+                    </div>
+                    <div class="category-info">
+                        <div class="category-name">${expense.name}</div>
+                        <div class="category-amount">${formatCurrency(expense.amount)} spent</div>
+                    </div>
+                    <div class="category-percentage">${percentage}%</div>
+                `;
+                
+                container.appendChild(categoryElement);
+            });
+        }
+
+        // Update loan cards
+        function updateLoanCards() {
+            const container = document.querySelector('.loan-cards');
+            container.innerHTML = '';
+            
+            sampleLoans.forEach(loan => {
+                const loanElement = document.createElement('div');
+                loanElement.className = `loan-card ${loan.featured ? 'featured' : ''}`;
+                loanElement.innerHTML = `
+                    ${loan.featured ? '<div class="loan-badge">Recommended</div>' : ''}
+                    <div class="loan-icon">
+                        <i class="fas fa-${loan.icon}"></i>
+                    </div>
+                    <h3 class="loan-name">${loan.name}</h3>
+                    <p class="loan-description">${loan.description}</p>
+                    <div class="loan-details">
+                        <div class="loan-detail">
+                            <div class="detail-label">Amount</div>
+                            <div class="detail-value">Up to ${formatCurrency(loan.amount)}</div>
+                        </div>
+                        <div class="loan-detail">
+                            <div class="detail-label">Interest</div>
+                            <div class="detail-value">${loan.interest}% p.a.</div>
+                        </div>
+                        <div class="loan-detail">
+                            <div class="detail-label">Term</div>
+                            <div class="detail-value">${loan.term}</div>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary apply-loan-btn" data-loan-id="${loan.id}">
+                        Apply Now
+                    </button>
+                `;
+                
+                container.appendChild(loanElement);
+            });
+            
+            // Add event listeners to loan apply buttons
+            document.querySelectorAll('.apply-loan-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const loanId = this.getAttribute('data-loan-id');
+                    const loan = sampleLoans.find(l => l.id == loanId);
+                    
+                    if (loan) {
+                        // Show AI chat for loan application
+                        document.getElementById('aiChatbox').classList.add('active');
+                        
+                        // Add loan-specific message
+                        let message = `You're applying for a ${loan.name}. `;
+                        message += `This loan offers up to ${formatCurrency(loan.amount)} at ${loan.interest}% interest. `;
+                        message += `Would you like me to help you complete the application?`;
+                        
+                        addAIMessage('bot', message);
+                        
+                        // Update button text
+                        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                        this.disabled = true;
+                        
+                        // Simulate application processing
+                        setTimeout(() => {
+                            this.innerHTML = '<i class="fas fa-check"></i> Application Started';
+                            this.style.background = 'var(--success)';
+                            this.style.borderColor = 'var(--success)';
+                            this.style.color = 'white';
+                        }, 1500);
+                    }
+                });
+            });
+        }
+
+        // Update active loan section
+        function updateActiveLoanSection() {
+            const container = document.getElementById('activeLoanSection');
+            
+            if (currentUser && currentUser.loanBalance > 0) {
+                container.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <div style="width: 60px; height: 60px; background: rgba(25, 135, 84, 0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--primary);">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: 700; font-size: 1.2rem; margin-bottom: 5px;">Active Loan: Business Expansion</div>
+                            <div style="color: var(--gray-light); font-size: 0.9rem;">Balance: ${formatCurrency(currentUser.loanBalance)} • Next payment: ${formatCurrency(1250)} due in 14 days</div>
+                        </div>
+                        <button class="btn btn-primary" id="makePaymentBtn">
+                            Make Payment
+                        </button>
+                    </div>
+                `;
+                
+                // Add event listener to payment button
+                document.getElementById('makePaymentBtn').addEventListener('click', function() {
+                    showNotification('Payment portal would open here', 'info');
+                });
+            } else {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 20px;">
+                        <div style="font-size: 1.2rem; margin-bottom: 10px; color: var(--gray-light);">No active loans</div>
+                        <div style="font-size: 0.9rem; color: var(--gray);">Apply for a loan to get started</div>
+                    </div>
+                `;
+            }
+        }
+
+        // Update advice cards
+        function updateAdviceCards() {
+            const container = document.getElementById('adviceCards');
+            container.innerHTML = '';
+            
+            sampleAdvice.forEach(advice => {
+                const adviceElement = document.createElement('div');
+                adviceElement.className = 'advice-card';
+                adviceElement.innerHTML = `
+                    <div class="advice-icon">
+                        <i class="fas fa-${advice.icon}"></i>
+                    </div>
+                    <h3 class="advice-title">${advice.title}</h3>
+                    <p class="advice-text">${advice.text}</p>
+                    <a href="#" class="advice-link" data-action="${advice.action}">
+                        ${advice.action}
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                `;
+                
+                container.appendChild(adviceElement);
+            });
+            
+            // Add event listeners to advice links
+            document.querySelectorAll('.advice-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const action = this.getAttribute('data-action');
+                    showNotification(`${action} feature would open here`, 'info');
+                });
+            });
+        }
+
+        // Update transactions
+        function updateTransactions() {
+            const container = document.getElementById('transactionsList');
+            container.innerHTML = '';
+            
+            sampleTransactions.forEach(transaction => {
+                const transactionElement = document.createElement('div');
+                transactionElement.className = 'transaction-item';
+                transactionElement.innerHTML = `
+                    <div class="transaction-icon ${transaction.type}">
+                        <i class="fas fa-${transaction.type === 'income' ? 'money-bill-wave' : 'shopping-cart'}"></i>
+                    </div>
+                    <div class="transaction-info">
+                        <div class="transaction-title">${transaction.title}</div>
+                        <div class="transaction-date">${transaction.date}</div>
+                    </div>
+                    <div class="transaction-amount amount-${transaction.type === 'income' ? 'positive' : 'negative'}">
+                        ${transaction.type === 'income' ? '+' : '-'} ${formatCurrency(transaction.amount)}
+                    </div>
+                `;
+                
+                container.appendChild(transactionElement);
+            });
+        }
+
+        // AI chat functions
+        function addAIMessage(sender, text) {
+            const messagesContainer = document.getElementById('aiMessages');
+            const messageElement = document.createElement('div');
+            messageElement.className = `ai-message ${sender}`;
+            messageElement.textContent = text;
+            
+            messagesContainer.appendChild(messageElement);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function generateAIResponse(userMessage) {
+            const message = userMessage.toLowerCase();
+            let response = '';
+            
+            // Get responses for current language or fallback to English
+            const responses = aiResponses[userLanguage] || aiResponses.en;
+            
+            // Simple keyword matching for demo
+            if (message.includes('hello') || message.includes('hi') || message.includes('greet')) {
+                const greetings = responses.greetings || aiResponses.en.greetings;
+                response = greetings[Math.floor(Math.random() * greetings.length)];
+            } 
+            else if (message.includes('save') || message.includes('saving') || message.includes('investment')) {
+                const savings = responses.savings || aiResponses.en.savings;
+                response = savings[Math.floor(Math.random() * savings.length)];
+            }
+            else if (message.includes('loan') || message.includes('borrow') || message.includes('debt')) {
+                const loans = responses.loans || aiResponses.en.loans;
+                response = loans[Math.floor(Math.random() * loans.length)];
+            }
+            else if (message.includes('budget') || message.includes('spend') || message.includes('expense')) {
+                const budget = responses.budget || aiResponses.en.budget;
+                response = budget[Math.floor(Math.random() * budget.length)];
+            }
+            else if (message.includes('advice') || message.includes('tip') || message.includes('help')) {
+                const general = responses.general || aiResponses.en.general;
+                response = general[Math.floor(Math.random() * general.length)];
+            }
+            else {
+                // Default response
+                const defaultResponses = [
+                    "I understand you're asking about finances. Could you be more specific?",
+                    "That's an interesting question about money management. Could you clarify?",
+                    "I can help you with savings, loans, budgeting, or financial advice. What specifically do you need?"
+                ];
+                response = defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+            }
+            
+            // Add slight delay for more natural feel
+            setTimeout(() => {
+                addAIMessage('bot', response);
+            }, 500);
+        }
+
+        // Helper functions
+        function formatCurrency(amount) {
+            return `ZMW ${amount.toLocaleString('en-ZM', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+        }
+
+        function showNotification(message, type) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <div style="position: fixed; top: 30px; right: 30px; background: ${type === 'success' ? 'var(--primary)' : type === 'error' ? 'var(--danger)' : 'var(--info)'}; 
+                    color: white; padding: 16px 24px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
+                    z-index: 2001; display: flex; align-items: center; gap: 12px; max-width: 400px;">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        function closeModal() {
+            document.getElementById('expenseModal').classList.remove('active');
+            document.getElementById('expenseForm').reset();
+        }
+    </script>
+</body>
+</html>
